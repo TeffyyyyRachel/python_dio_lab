@@ -79,6 +79,11 @@ while True:
             """)
 
     elif opcao == "0":
+        print("""
+              
+              ==== Agradecemos por usar os nossos serviços! ====
+
+              """)
         break
 
     else:
