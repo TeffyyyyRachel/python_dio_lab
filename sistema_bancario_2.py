@@ -7,9 +7,9 @@ def deposito(saldo, valor, extrato,/):
 def extrato(saldo, /, *, extrato):
     return saldo, extrato
 
-def cadastrar_usuario():
+def cadastrar_usuario(nome, data_nascimento, cpf, endereco, usuario):
     return None
 
-def cadastrar_conta_corrente():
+def cadastrar_conta_corrente(agencia, numero_conta, usuario):
     return None
 
