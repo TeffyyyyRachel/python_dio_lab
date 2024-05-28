@@ -12,14 +12,15 @@ menu = """
     Operação desejada: """
 
 saldo = 0
-limite = 500
+LIMITE_VALOR_SAQUE = 500
+valor_sacado = 0
 extrato = """
 
             ==== EXTRATO ====
 
 """
 numero_saques = 0
-LIMITE_SAQUES = 3
+LIMITE_QUANTIDADE_SAQUES = 3
 
 while True:
 
@@ -40,7 +41,7 @@ while True:
             === Seu novo saldo é de R$ {saldo:.2f} ===""")
 
     elif opcao == "2":
-        if saldo > 0 and LIMITE_SAQUES > 0:
+        if saldo > 0 and numero_saques != LIMITE_QUANTIDADE_SAQUES and valor_sacado != LIMITE_VALOR_SAQUE:
             saque = float(input('''
 
                 ==== SAQUE ====
@@ -53,11 +54,12 @@ while True:
             extrato += f"           Saque de    R$ {saque:.2f} \n"
             print(f"""
                 === Seu novo saldo é de R$ {saldo:.2f} ===""")
-            LIMITE_SAQUES -= 1
+            numero_saques += 1
+            valor_sacado += saque
         else:
             print(f"""
-            === Saldo insuficiente para o saque 
-                  ou limite diário atingido. ===""")
+            === Saldo insuficiente para o saque, 
+                 ou limites diários atingidos. ===""")
 
     elif opcao == "3":
         if extrato == """
