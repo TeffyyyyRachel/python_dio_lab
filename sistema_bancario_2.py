@@ -38,10 +38,21 @@ def exibir_extrato(saldo, /, *, extrato):
 
     return saldo, extrato
 
-def cadastrar_usuario(nome, data_nascimento, cpf, endereco, usuario):
-    return None
+def cadastrar_usuario(usuarios):
+    cpf = input("\n\tDigite os números de cpf sem pontuação: ")
+    nome = input("\n\tNome completo: ")
+    data_nascimento = input("\n\tData de nascimento (dd-mm-aaaa): ")
+    endereco = input("\n\tInforme o endereço (logradouro, nro - bairro - cidade/Sigla estado): ")
+
+    usuarios.append({"cpf":cpf, "nome":nome, "data_nascimento":data_nascimento, "endereco":endereco})
+
+    print("\n\t=== Usuário criado com sucesso! ===")
 
 def cadastrar_conta_corrente(agencia, numero_conta, usuario):
+    
+    return None
+
+def listar_contas():
     return None
 
 def menu():
@@ -69,7 +80,7 @@ def main():
     numero_saques = 0
     limite_diario = 500
     extrato = ""
-    usuario = []
+    usuarios = []
     contas = []
 
     while True:
@@ -100,10 +111,11 @@ def main():
             exibir_extrato(saldo, extrato=extrato)
 
         elif operacao_escolhida == "4": # cadastro de usuário
-            cadastrar_usuario()
+            cadastrar_usuario(usuarios)
+            print(usuarios)
 
         elif operacao_escolhida == "5": # criação de nova conta
-            cadastrar_conta_corrente()
+            cadastrar_conta_corrente(contas)
         
         elif operacao_escolhida == "0":
             break
