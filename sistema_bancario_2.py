@@ -9,13 +9,11 @@ def saque(*,saldo, valor, extrato, limite, numero_saques, limite_saques):
         print("\n\tOPERAÇÃO FALHOU!!! Saque excede o saldo disponível.")
     elif excedeu_saques:
         print("\n\tOPERAÇÃO FALHOU!!! Saque excede o limite diário de 3 saques.")
-    
     elif valor > 0:
         saldo -= valor
         print(f"\n\t=== Saque de R${valor} realizado com sucesso! ===")
-        extrato += f"\n\t=== Saque de R${valor}\t==="
+        extrato += f"\n\t= Saque:\t-R${valor} ="
         numero_saques += 1
-
     else: 
         print("\n\tOPERAÇÃO FALHOU!!!\tValor inválido.")
 
@@ -24,7 +22,7 @@ def saque(*,saldo, valor, extrato, limite, numero_saques, limite_saques):
 def deposito(saldo, valor, extrato,/):
     saldo += valor
     print(f"\n\t=== Depósito de R${valor} realizado com sucesso! ===")
-    extrato += f"\n\t=== Depósito de R${valor}\t==="
+    extrato += f"\n\t= Depósito:\t+R${valor}\t="
     return saldo, extrato
 
 def exibir_extrato(saldo, /, *, extrato):
@@ -38,23 +36,6 @@ def exibir_extrato(saldo, /, *, extrato):
 
     return saldo, extrato
 
-def cadastrar_usuario(usuarios):
-    cpf = input("\n\tDigite os números de cpf sem pontuação: ")
-    nome = input("\n\tNome completo: ")
-    data_nascimento = input("\n\tData de nascimento (dd-mm-aaaa): ")
-    endereco = input("\n\tInforme o endereço (logradouro, nro - bairro - cidade/Sigla estado): ")
-
-    usuarios.append({"cpf":cpf, "nome":nome, "data_nascimento":data_nascimento, "endereco":endereco})
-
-    print("\n\t=== Usuário criado com sucesso! ===")
-
-def cadastrar_conta_corrente(agencia, numero_conta, usuario):
-    
-    return None
-
-def listar_contas():
-    return None
-
 def menu():
     menu = """
 
@@ -63,8 +44,6 @@ def menu():
     1 - Depositar
     2 - Sacar
     3 - Extrato
-    4 - Cadastrar usuário
-    5 - Criar nova conta
     0 - Sair
 
     ==============
@@ -73,15 +52,13 @@ def menu():
     return input(menu)
 
 def main():
-    AGENCIA = "0002"
+    AGENCIA = "0001"
     LIMITE_DIARIO = 3
 
     saldo = 0
     numero_saques = 0
     limite_diario = 500
     extrato = ""
-    usuarios = []
-    contas = []
 
     while True:
         operacao_escolhida = menu()
@@ -110,17 +87,10 @@ def main():
         elif operacao_escolhida == "3": # extrato
             exibir_extrato(saldo, extrato=extrato)
 
-        elif operacao_escolhida == "4": # cadastro de usuário
-            cadastrar_usuario(usuarios)
-            print(usuarios)
-
-        elif operacao_escolhida == "5": # criação de nova conta
-            cadastrar_conta_corrente(contas)
-        
         elif operacao_escolhida == "0":
             break
 
         else:
-            print("Escolha um número válido, entre 0 e 5.")
+            print("Escolha um número válido, entre 0 e 3.")
 
 main()
