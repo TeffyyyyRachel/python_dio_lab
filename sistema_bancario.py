@@ -40,7 +40,7 @@ while True:
             === Seu novo saldo é de R$ {saldo:.2f} ===""")
 
     elif opcao == "2":
-        if saldo > 0:
+        if saldo > 0 and LIMITE_SAQUES > 0:
             saque = float(input('''
 
                 ==== SAQUE ====
@@ -53,9 +53,11 @@ while True:
             extrato += f"           Saque de    R$ {saque:.2f} \n"
             print(f"""
                 === Seu novo saldo é de R$ {saldo:.2f} ===""")
+            LIMITE_SAQUES -= 1
         else:
             print(f"""
-            === Saldo insuficiente para o saque, conta zerada. ===""")
+            === Saldo insuficiente para o saque 
+                  ou limite diário atingido. ===""")
 
     elif opcao == "3":
         if extrato == """
