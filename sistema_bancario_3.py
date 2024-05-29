@@ -1,3 +1,5 @@
+from abc import ABC, abstractclassmethod, abstractmethod, abstractproperty
+
 class Conta():
     def __init__(self, saldo, numero, agencia, cliente, historico):
         self._saldo = saldo
@@ -116,7 +118,28 @@ class Historico:
             }
         )
 
+class Transacao(ABC):
+    @property
+    def valor(self):
+        pass
 
+    def registrar(self):
+        pass
+    
+class Saque(Transacao):
+    def __init__(self, valor):
+        super().__init__()
+        self._valor = valor
+    
+    @property
+    def valor(self):
+        return self._valor
+    
+    def registrar(self, conta):
+        transacao_realizada = conta.sacar(self.valor)
+
+        if transacao_realizada:
+            conta.historico.adicionar_transacao(self)
 
 
 
