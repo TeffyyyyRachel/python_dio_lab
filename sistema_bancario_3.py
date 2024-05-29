@@ -56,13 +56,34 @@ class Conta():
             return False
     
     def depositar(self, valor):
-        return
+        saldo = self.saldo
+
+        print("OPERAÇÃO REALIZADA COM SUCESSO!")
+        return True
 
 class ContaCorrente(Conta):
-    def __init__(self, saldo, numero, agencia, cliente, historico, limite, limite_saques):
+    def __init__(self, saldo, numero, agencia, cliente, historico, limite=500, limite_saques=3):
         super().__init__(saldo, numero, agencia, cliente, historico)
         self.limite = limite
         self.limite_saques = limite_saques
+
+    def sacar(self, valor):
+        limite = self.limite
+        limite_saques = self.limite_saques
+        numero_saques_realizados = 0 # Ainda não entendi como fazer
+        excedeu_limite = valor > limite
+        excedeu_limite_saques = numero_saques_realizados >= limite_saques
+        
+        if excedeu_limite:
+            print("OPERAÇÃO FALHOU! Valor pedido ultrapassar o limite diário de R$500.00")
+            return False
+        
+        elif excedeu_limite_saques:
+            print("OPERAÇÃO FALHOU! Limite diário de três saques atingido. Tente novamente amanhã.")
+            return False
+        
+        else:
+            super().sacar(valor)
 
 class Cliente():
     def __init__(self, endereco, contas):
