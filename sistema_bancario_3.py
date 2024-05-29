@@ -103,3 +103,20 @@ class PessoaFisica(Cliente):
         self.nome = no_me
         self.data_nasc_imento = data_nascimento__
 
+class Historico:
+    def __init__(self):
+        self._transacoes = []
+
+    def adicionar_transacao(self, transacao):
+        self._transacoes.append(
+            {
+                "tipo": transacao.__class__.__name__,
+                "valor": transacao.valor,
+                "data": "",
+            }
+        )
+
+
+
+
+
